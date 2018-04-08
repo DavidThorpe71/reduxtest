@@ -30,10 +30,11 @@ const defaultState = {
   what: 'NMore sdtuff'
 }
 
+// Reducer
 const greeting = (state = defaultState, action) => {
   switch (action.type) {
-    case 'GREET_ME':
-      return { ...state, welcome: 'Hello! David' };
+    case 'GREET_NAME':
+      return { ...state, welcome: `hello ${action.name}` };
     case 'GREET_WORLD':
       return { ...state, welcome: 'Hello World!' };
     default:
@@ -41,12 +42,17 @@ const greeting = (state = defaultState, action) => {
   }
 };
 
+// Create the store
 const store = createStore(greeting);
 
 console.log(store.getState());
 
+const name = 'David';
+
+// Action
 store.dispatch({
-  type: 'GREET_ME'
+  type: 'GREET_NAME',
+  name
 })
 
 console.log(store.getState());
